@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="dbIO" Id="{56fc213c-6543-4379-a306-cb421992620e}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	bReset  	 AT %I* : BOOL;
+	bAlarm  	 AT %Q* : BOOL;
+	bWriteEnable AT %Q* : BOOL;
+	rTemperature AT %Q* : LREAL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{15c42c1c-5789-41aa-83cc-1ff2f55013d4}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	pTemperature : fbRaiseTemperature;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+dbIO.bWriteEnable:=TRUE;
+
+pTemperature(bReset := dbIO.bReset,
+			bAlarm => dbIO.bAlarm,
+			rTemperature => dbIO.rTemperature);
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="12" Count="0" />
+      <LineId Id="7" Count="1" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="9" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="fbRaiseTemperature" Id="{b300f592-4e61-4a10-bcec-fc0dcd89f745}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK fbRaiseTemperature
+VAR_INPUT
+	bReset: BOOL;
+END_VAR
+VAR_OUTPUT
+	bAlarm: BOOL;
+	rTemperature: REAL;
+END_VAR
+VAR
+	timer: ton;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+timer(PT:=T#1S);
+
+IF NOT Timer.Q AND NOT timer.IN THEN
+	timer.IN:=TRUE;
+END_IF
+ 
+
+IF bReset THEN
+	timer.IN:=FALSE;
+	rTemperature:=0;
+	bAlarm:=FALSE;
+	timer.IN :=TRUE;
+END_IF
+
+IF timer.Q THEN
+	timer.IN:=FALSE;
+	rTemperature:= rTemperature +1;
+END_IF
+
+IF rTemperature >19 THEN
+	bAlarm :=TRUE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="fbRaiseTemperature">
+      <LineId Id="54" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="56" Count="1" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="33" Count="1" />
+      <LineId Id="49" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
